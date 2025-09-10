@@ -2,6 +2,13 @@ body {
   background: #f9f7fe;
   font-family: "Roboto Condensed", sans-serif;
 }
+header {
+  border-bottom: 1px solid #f9f7fe;
+  padding: 0 0 30px 0;
+}
+a {
+  color: #885df1;
+}
 .weather-app {
   background: white;
   max-width: 600px;
@@ -15,12 +22,26 @@ body {
   border: none;
   border-radius: 6px;
   width: 80%;
-  padding: 20px;
+  padding: 15px 20px;
 }
 .search-form-button {
-  background: purple;
-  padding: 20px;
+  background: #885df1;
+  padding: 15px 20px;
   border: none;
   border-radius: 6px;
   color: white;
+  margin-left: 5px;
+  font-size: 16px;
+}
+.weather-app-data {
+  display: flex;
+  /* display:flex makes it so that the attributes in this div are next to each other*/
+  justify-content: space-between;
+}
+footer {
+  border-top: 1px solid #f9f7fe;
+  padding: 30px 0 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
 }
