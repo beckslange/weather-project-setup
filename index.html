@@ -15,14 +15,19 @@
   <body>
     <div class="weather-app">
       <header>
-        <form class="search-form">
+        <form class="search-form" id="search-form">
+          <!--class is for css; id is for javascript
+        JS only uses id because it cannot be repeated, and so it always knows
+        to target the id, whereas class can be used in different places and target 
+        different attributes-->
           <input
             type="search"
             placeholder="Enter a city..."
             required
             class="search-form-input"
+            id="search-form-input"
           />
-          <input type="submit" value="Search" class="search-form-button" />
+          <input type="submit" value="search" class="search-form-button" />
         </form>
       </header>
       <main>
@@ -58,5 +63,6 @@
         >
       </footer>
     </div>
+    <script src="src/index.js"></script>
   </body>
 </html>
