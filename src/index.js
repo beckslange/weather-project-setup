@@ -20,16 +20,45 @@ function refreshWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   //console.log(response.data.temperature.humidity);
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = `${response.data.wind.speed}km/h`;
+  windElement.innerHTML = `${response.data.wind.speed}mph`;
   //console.log(response.data.wind.speed);
 
-  // the .value is whatever is put into the search-form-input (or search bar),
-  //and the .innerHTML makes it so that whatever is targeted (in this case the h1,
-  //which is the city) is changed to whatever is typed in.
-  //the next step is to call the API and find the correct information for each
-  //city entered--add axios
+  // 🆕 Add current day + time (12hr format)
+  function formatDate(timestamp) {
+    let date = new Date(timestamp * 1000); // convert seconds → ms
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    let day = days[date.getDay()];
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+
+    if (minutes < 10) {
+      minutes = `0${minutes}`;
+    }
+
+    let ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    if (hours === 0) {
+      hours = 12;
+    }
+
+    return `${day} ${hours}:${minutes} ${ampm}`;
+  }
+
+  let dateElement = document.querySelector("#date");
+  dateElement.innerHTML = formatDate(response.data.time);
+
   temperatureElement.innerHTML = Math.round(temperature);
 }
+
 function searchCity(city) {
   //why create a new function? "separation of concerns" which means that we
   //want each function to do one thing, and do it well
