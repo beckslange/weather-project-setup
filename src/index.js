@@ -5,9 +5,24 @@ function refreshWeather(response) {
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
   let cityElement = document.querySelector("#city");
+  cityElement.innerHTML = response.data.city;
   //this id was created on h1
   //cityElement.innerHTML = searchInput.value; --replace this with line below
-  cityElement.innerHTML = response.data.city;
+  //console.log(response.data); -- use this to find the ids from the html you
+  //looking for. i.e. description: "clear sky" for id description. leads to
+  //console.log below
+  //console.log(response.data.condition.description);
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.condition.description;
+  // new let descriptionElement and innerhtml resulted from what we found in
+  //above console.log
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
+  //console.log(response.data.temperature.humidity);
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `${response.data.wind.speed}km/h`;
+  //console.log(response.data.wind.speed);
+
   // the .value is whatever is put into the search-form-input (or search bar),
   //and the .innerHTML makes it so that whatever is targeted (in this case the h1,
   //which is the city) is changed to whatever is typed in.
@@ -48,3 +63,4 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 //the function above is added after the event listener is defined
 searchCity("Lisbon");
+//deleted the hard coded city, and now when the page loads it just pulls up the weather for Lisbon

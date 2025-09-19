@@ -87,6 +87,7 @@ main {
   /*we do not have to use absolute positioning here because of flex box*/
   font-size: 28px;
 }
+
 a {
   color: #885df1;
 }
