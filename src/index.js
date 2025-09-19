@@ -4,6 +4,7 @@ function refreshWeather(response) {
   //this gives us the response, or data for the city we search
   let temperatureElement = document.querySelector("#temperature");
   let temperature = response.data.temperature.current;
+  temperatureElement.innerHTML = Math.round(temperature);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.city;
   //this id was created on h1
@@ -22,10 +23,23 @@ function refreshWeather(response) {
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = `${response.data.wind.speed}mph`;
   //console.log(response.data.wind.speed);
+  console.log(response.data);
 
-  // 🆕 Add current day + time (12hr format)
+  // the .value is whatever is put into the search-form-input (or search bar),
+  //and the .innerHTML makes it so that whatever is targeted (in this case the h1,
+  //which is the city) is changed to whatever is typed in.
+  //the next step is to call the API and find the correct information for each
+  //city entered--add axios
+
+  let timeElement = document.querySelector(`#time`);
+  let date = new Date(response.data.time * 1000);
+  timeElement.innerHTML = `${date.getDay()}${date.getHours()}:${date.getMinutes()}`;
+  //in order to find the date and time look under console.log(response.data)
+  //to "time", then do new Date (copied number from whatever is under time * 1000)
+  //next make the timeElement, and date as above
+
   function formatDate(timestamp) {
-    let date = new Date(timestamp * 1000); // convert seconds → ms
+    let date = new Date(timestamp * 1000); // check API: seconds or ms
     let days = [
       "Sunday",
       "Monday",
@@ -35,28 +49,22 @@ function refreshWeather(response) {
       "Friday",
       "Saturday",
     ];
-
     let day = days[date.getDay()];
     let hours = date.getHours();
     let minutes = date.getMinutes();
+    if (minutes < 10) minutes = `0${minutes}`;
+    const ampm = hours >= 12 ? "PM" : "AM";
 
-    if (minutes < 10) {
-      minutes = `0${minutes}`;
-    }
-
-    let ampm = hours >= 12 ? "PM" : "AM";
+    // Convert to 12-hour format
     hours = hours % 12;
-    if (hours === 0) {
-      hours = 12;
-    }
+    if (hours === 0) hours = 12; // midnight or noon
 
+    // Add leading zero to minutes if needed
+    if (minutes < 10) minutes = `0${minutes}`;
     return `${day} ${hours}:${minutes} ${ampm}`;
   }
 
-  let dateElement = document.querySelector("#date");
-  dateElement.innerHTML = formatDate(response.data.time);
-
-  temperatureElement.innerHTML = Math.round(temperature);
+  timeElement.innerHTML = formatDate(response.data.time);
 }
 
 function searchCity(city) {
