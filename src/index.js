@@ -38,6 +38,12 @@ function refreshWeather(response) {
   //to "time", then do new Date (copied number from whatever is under time * 1000)
   //next make the timeElement, and date as above
 
+  let iconElement = document.querySelector("#icon");
+  //first selecting the element with id icon
+  icon.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon"/>`;
+  //we added three things, we added a new div "icon", edited css, and then added a new
+  //line that selected the icon Element, and then injecting the image using the URL
+  //based on the api
   function formatDate(timestamp) {
     let date = new Date(timestamp * 1000); // check API: seconds or ms
     let days = [

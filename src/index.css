@@ -66,8 +66,10 @@ main {
 }
 
 .weather-app-icon {
-  font-size: 44px;
-  margin-top: 22px;
+  height: 88px;
+  width: 88px;
+  /* margin-top: 22px; original code included font-size and margin-top, 
+  /* changed to height and width
   /* margin-top moved the icon down so it looked better relative to the 
   temperature. 
   Because the icon, temperature, and unit are all wrapped in
@@ -80,10 +82,10 @@ main {
 .weather-app-temperature {
   font-size: 88px;
   font-weight: bold;
-  margin-left: 10px;
+  line-height: 88px;
 }
 .weather-app-unit {
-  margin-top: 16px;
+  margin-top: 6px;
   /*we do not have to use absolute positioning here because of flex box*/
   font-size: 28px;
 }
