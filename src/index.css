@@ -21,6 +21,8 @@ header {
   border-radius: 6px;
   width: 80%;
   padding: 15px 20px;
+  /* padding is what made the box the height that it is
+  width made it go that far into the .weather-app */
 }
 .search-form-button {
   background: #885df1;
@@ -53,6 +55,7 @@ main {
 .weather-app-city {
   font-size: 38px;
   margin: 0;
+  /* this got rid of any space above the city name*/
   line-height: 48px;
 }
 .weather-app-details {
